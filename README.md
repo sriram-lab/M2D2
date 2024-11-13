@@ -4,7 +4,7 @@ Ultra-high-throughput screening of antimicrobial combination therapies using a t
 
 Here, we present M2D2, a two-stage machine learning (ML) pipeline that identifies promising antimicrobial drug combinations, which are crucial for combating drug resistance. M2D2 addresses key challenges in drug combination discovery by predicting drug synergies using computationally generated drug-protein interaction data, thereby circumventing the need for expensive omics data. 
 
-STAGE 1 ML: generate drug - protein interactions to use as features in stage 2 ML that predicts drug - drug interactions. The two encoding files mine encodings from DeepPurpose library (Huang, K. et al. DeepPurpose: a deep learning library for drug–target interaction prediction. Bioinformatics 1–6 (2020)). To install and access their library of encodings please see their GitHub repository https://github.com/kexinhuang12345/DeepPurpose.
+STAGE 1 ML: generate drug - protein interactions to use as features in stage 2 ML that predicts drug - drug interactions. The two encoding files mine encodings from DeepPurpose library (Huang, K. et al. DeepPurpose: a deep learning library for drug–target interaction prediction. Bioinformatics 1–6 (2020)). To install and access their library of encodings please see their GitHub repository https://github.com/kexinhuang12345/DeepPurpose. Installation instructions found in README.md.
  
 Generate target encodings (generate_target_encodings.ipynb) 
 	input: .xlsx file containing protein targets and their amino acid sequences
