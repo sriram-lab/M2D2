@@ -18,6 +18,8 @@ Generate drug - protein interaction predictions (drug-protein_prediction.ipynb)
 	input: bindingdb_merged_all.pkl (training data), drugs_MACCS.pkl (drug encodings), ecoli_4087_pseudoAAC.pkl (protein encodings)
 	output: drug - protein interaction values 
 
+STAGE 2 ML: generate drug interaction predictions using any of the available datasets. Training data and stage 1 ML features are already available to use, but can be replaced by user input. The traintest folder provides code to test model performance using different types of data inputs. The predict folder provides all files needed to predict drug interactions for a set of FDA approved drugs combined with training drugs. 
+
 # Illustrations
 
 Provides more extensive heatmaps for all computational and omics datasets. The datasets are protein - drug interactions calculated by ML and molecular docking, and a set of omics data taken from literature including chemogenomics, metabolomics, and transcriptomics. The heatmaps are separated into drugs and pathways. The drugs folder contains individual heatmaps for the 16 drugs that overlap between the five datasets options provided. The pathways folder contains heatmaps for classes of pathways for all drugs and all datasets. 
