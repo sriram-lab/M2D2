@@ -1,0 +1,17 @@
+dock_name	trans_name	full_name
+BAC	CW_Bacitracin_WATER_logFC	Bacitracin
+CSD	CW_Cycloserine_WATER_logFC	Cycloserine
+VAN	CW_Vancomycin_WATER_logFC	Vancomycin
+CIP	DG_Ciprofloxacin_NAOH_logFC	Ciprofloxacin
+NAL	DG_Nalidixic_acid_NAOH_logFC	Nalidixic acid
+NOR	DG_Norfloxacin_NAOH_logFC	Norfloxacin
+NVB	DG_Novobiocin_WATER_logFC	Novobiocin
+DXR	DS_Doxorubicin_DMSO_logFC	Doxorubicin
+CHL	PS50_Chloramphenicol_WATER_logFC	Chloramphenicol
+DOX	PS30_Doxycycline_DMSO_logFC	Doxycycline
+ERY	PS50_Erythromycin_WATER_logFC	Erythromycin
+TET	PS30_Tetracycline_WATER_logFC	Tetracycline
+TRC	FAS_Triclosan_W_WATER_Triclosan_E_ETHANOL_logFC	Triclosan
+TRI	DS_Trimethoprim_DMSO_logFC	Trimethoprim
+ISO	FAS_Isoniazid_WATER_logFC	Isoniazid
+RIF	RS_Rifampicin_DMSO_logFC	Rifampicin
