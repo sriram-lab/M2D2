@@ -1,0 +1,17 @@
+dock_name	met_name	full_name
+BAC	Bacitracin	Bacitracin
+CSD	D_cycloserine	Cycloserine
+VAN	VancomycinHydrochloride	Vancomycin
+CIP	CiprofloxacinHydrochlorideMonohydrate	Ciprofloxacin
+NAL	NalidixicAcidSodiumSalt	Nalidixic acid
+NOR	Norfloxacin	Norfloxacin
+NVB	NovobiocinSodiumSalt	Novobiocin
+DXR	DoxorubicinHydrochloride	Doxorubicin
+CHL	Chloramphenicol	Chloramphenicol
+DOX	DoxycyclineHydrochloride	Doxycycline
+ERY	Erythromycin	Erythromycin
+TET	TetracyclineHydrochloride	Tetracycline
+TRC	Triclosan	Triclosan
+TRI	Trimethoprim	Trimethoprim
+ISO	Isoniazid	Isoniazid
+RIF	Rifampicin	Rifampicin

@@ -1,0 +1,17 @@
+dock_name	chemgen_name	full_name
+BAC	BACITRACIN	Bacitracin
+CSD	CYCLOSERINED	Cycloserine
+VAN	VANCOMYCIN	Vancomycin
+CIP	CIPROFLOXACIN	Ciprofloxacin
+NAL	NALIDIXICACID	Nalidixic acid
+NOR	NORFLOXACIN	Norfloxacin
+NVB	NOVOBIOCIN	Novobiocin
+DXR	DOXORUBICIN	Doxorubicin
+CHL	CHLORAMPHENICOL	Chloramphenicol
+DOX	DOXYCYCLINE	Doxycycline
+ERY	ERYTHROMYCIN	Erythromycin
+TET	TETRACYCLINE	Tetracycline
+TRC	TRICLOSAN	Triclosan
+TRI	TRIMETHOPRIM	Trimethoprim
+ISO	ISONIAZID	Isoniazid
+RIF	RIFAMPICIN	Rifampicin

@@ -1,0 +1,18 @@
+abbrev	trans_name	full_name
+BAC	CW_Bacitracin_WATER_logFC	Bacitracin
+CER	FAS_Cerulenin_ETHANOL_logFC	Cerulenin
+CHL	PS50_Chloramphenicol_WATER_logFC	Chloramphenicol
+CIP	DG_Ciprofloxacin_NAOH_logFC	Ciprofloxacin
+CSD	CW_Cycloserine_WATER_logFC	Cycloserine
+DOX	PS30_Doxycycline_DMSO_logFC	Doxycycline
+DXR	DS_Doxorubicin_DMSO_logFC	Doxorubicin
+ERY	PS50_Erythromycin_WATER_logFC	Erythromycin
+NAL	DG_Nalidixic_acid_NAOH_logFC	Nalidixic acid
+NVB	DG_Novobiocin_WATER_logFC	Novobiocin
+PMB	CM_Polymyxin_WATER_logFC	PolymyxinB
+RIF	RS_Rifampicin_DMSO_logFC	Rifampicin
+SMX	DS_Sulfamethoxazole_DMSO_logFC	Sulfamethoxazole
+TET	PS30_Tetracycline_WATER_logFC	Tetracycline
+TRC	FAS_Triclosan_W_WATER_Triclosan_E_ETHANOL_logFC	Triclosan
+TRI	DS_Trimethoprim_DMSO_logFC	Trimethoprim
+VAN	CW_Vancomycin_WATER_logFC	Vancomycin

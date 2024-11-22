@@ -1,0 +1,57 @@
+abbrev	ml_name	full_name
+A22	A22	A22
+AMK	AMK	Amikacin
+AMP	AMP	Ampicillin
+AMX	AMX	Amoxicillin
+AZI	AZI	Azithromycin
+AZT	AZT	Aztreonam
+BAC	BAC	Bacitracin
+BLM BLM Bleomycin
+BZK BZK Benzalkonium
+CCCP	CCCP	CCCP
+CEC	CEC	Cefaclor
+CEF	CEF	Cefoxitin
+CER	CER	Cerulenin
+CFS	CFS	Cefsulodin
+CHL	CHL	Chloramphenicol
+CIP	CIP	Ciprofloxacin
+CLA	CLA	Clarithromycin
+CSD	CSD	Cycloserine D
+DOX	DOX	Doxycycline
+DXR	DXR	Doxorubicin
+EGCG	EGCG	EGCG
+ERY	ERY	Erythromycin
+FOS	FOS	Fosfomycin
+FUS FUS Fusidic acid
+GEN	GEN	Gentamicin
+GLU	GLU	Glucose
+GLY	GLY	Glycerol
+H2O2	H2O2	Peroxide
+LEV	LEV	Levofloxacin
+MEC	MEC	Mecillinam
+MEM	MEM	Meropenem
+MIN	MIN	Minocycline
+MXF	MXF	Moxifloxacin
+NAL	NAL	Nalidixic acid
+NIT	NIT	Nitrofurantoin
+NVB	NVB	Novobiocin
+OXA	OXA	Oxacillin
+PAR	PAR	Paraquat
+PHL	PHL	Phleomycin
+PMB	PMB	Polymyxin B
+PMS	PMS	Peroxymonosulfate
+PRC	PRC	Procaine
+PUR	PUR	Puromycin
+PYO	PYO	Pyocyanin
+RIF	RIF	Rifampicin
+SMM	SMM	Sulfamonomethoxine
+SMX	SMX	Sulfamethoxazole
+SPE	SPE	Spectinomycin
+SPM	SPM	Spiramycin
+TET	TET	Tetracycline
+TOB	TOB	Tobramycin
+TPH	TPH	Theophylline
+TRC TRC Triclosan
+TRI	TRI	Trimethoprim
+VAN	VAN	Vancomycin
+VPM	VPM	Verapamil

@@ -1,0 +1,17 @@
+dock_name	full_name
+BAC	Bacitracin
+CSD	Cycloserine
+VAN	Vancomycin
+CIP	Ciprofloxacin
+NAL	Nalidixic acid
+NOR	Norfloxacin
+NVB	Novobiocin
+DXR	Doxorubicin
+CHL	Chloramphenicol
+DOX	Doxycycline
+ERY	Erythromycin
+TET	Tetracycline
+TRC	Triclosan
+TRI	Trimethoprim
+ISO	Isoniazid
+RIF	Rifampicin
