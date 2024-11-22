@@ -25,3 +25,7 @@ STAGE 2 ML: generate drug interaction predictions using any of the available dat
 Provides more extensive heatmaps for all computational and omics datasets. The datasets are protein - drug interactions calculated by ML and molecular docking, and a set of omics data taken from literature including chemogenomics, metabolomics, and transcriptomics. The heatmaps are separated into drugs and pathways. The drugs folder contains individual heatmaps for the 16 drugs that overlap between the five datasets options provided. The pathways folder contains heatmaps for classes of pathways for all drugs and all datasets. 
 
 These visuals are also available as an interactive website: https://sriramlab.shinyapps.io/shiny1/
+
+# NOTE ON LARGE DATASETS
+Two files have not been uploaded to the github due to their size, but are both publically available. The first file is training data from the BindingDB database (https://www.bindingdb.org/rwd/bind/index.jsp). The second missing file is metabolomic data from Campos, A. I. & Zampieri, M. Metabolomics-Driven Exploration of the Chemical Drug Space to Predict Combination Antimicrobial Therapies. Mol. Cell 74, 1291-1303.e6 (2019). Supplementary Table S1 (47MB) can be downloaded and used as input in M2D2. The M2D2 code uses the name "campos.xlsx" for clarity. No preprocessing of the dataset is needed. 
+  
