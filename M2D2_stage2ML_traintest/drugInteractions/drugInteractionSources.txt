@@ -1,0 +1,17 @@
+
+	Brochado, A. R. et al. Species-specific activity of antibacterial drug combinations. Nature 559, 259–263 (2018).
+
+
+    Chandrasekaran, S. et al. Chemogenomics and orthology‐based design of antibiotic combination therapies. Mol. Syst. Biol. 12, 872 (2016).
+  
+
+    Cokol, M., Li, C. & Chandrasekaran, S. Chemogenomic model identifies synergistic drug combinations robust to the pathogen microenvironment. PLoS Comput. Biol. 14, e1006677 (2018).
+
+
+    Katzir, I., Cokol, M., Aldridge, B. B. & Alon, U. Prediction of ultra-high-order antibiotic combinations based on pairwise interactions. PLoS Comput. Biol. 15, e1006774 (2019).
+  
+
+
+    Russ, D. & Kishony, R. Additivity of inhibitory effects in multidrug combinations. Nat Microbiol 3, 1339–1345 (2018).
+  
+
