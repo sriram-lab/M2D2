@@ -27,7 +27,7 @@ Provides more extensive heatmaps for all computational and omics datasets. The d
 These visuals are also available as an interactive website: https://sriramlab.shinyapps.io/shiny1/
 
 # NOTE ON LARGE DATASETS
-Two files have not been uploaded to the github due to their size, but are both publically available. The first file is training data from the BindingDB database (https://www.bindingdb.org/rwd/bind/index.jsp). The second missing file is metabolomic data from Campos, A. I. & Zampieri, M. Metabolomics-Driven Exploration of the Chemical Drug Space to Predict Combination Antimicrobial Therapies. Mol. Cell 74, 1291-1303.e6 (2019). Supplementary Table S1 (47MB) can be downloaded and used as input in M2D2. The M2D2 code uses the name "campos.xlsx" for clarity. No preprocessing of the dataset is needed. 
+One file has not been uploaded to the github due to their size, but are both publically available. The missing file is metabolomic data from Campos, A. I. & Zampieri, M. Metabolomics-Driven Exploration of the Chemical Drug Space to Predict Combination Antimicrobial Therapies. Mol. Cell 74, 1291-1303.e6 (2019). Supplementary Table S1 (47MB) can be downloaded and used as input in M2D2. The M2D2 code uses the name "campos.xlsx" for clarity. No preprocessing of the dataset is needed. 
   
 
 # HOW TO RUN
@@ -82,8 +82,6 @@ The workflow consists of:
 | 3    | `drug-protein_prediction.ipynb`    | `out.csv`                  |
 
 The drug and protein encodings from steps 1 and 2 are already included in the repository. To rerun the drug–protein prediction, you can therefore begin with step 3.
-
-Step 3 additionally requires `bindingdb_merged_all.pkl`, which is not included in the repository because of its size. See **NOTE ON LARGE DATASETS** above for information on obtaining the BindingDB data.
 
 The prediction model is trained on BindingDB using MACCS drug fingerprints and PseudoAAC protein encodings, and then predicts binding affinity for each drug–protein pair.
 

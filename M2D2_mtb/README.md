@@ -47,7 +47,7 @@ and produces:
 out.csv
 ```
 
-`bindingdb_merged_all.pkl` is approximately 510 MB and is not included in the repository. See the large-dataset instructions in the root README for obtaining it.
+`bindingdb_merged_all.pkl` is located under `M2D2_stage1ML`.
 
 A precomputed `out.csv` is also included in `stage2/`, so Stage 1 can be skipped if you only want to run the drug–drug interaction model.
 
