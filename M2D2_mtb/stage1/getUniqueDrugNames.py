@@ -1,0 +1,421 @@
+# Gets all unique mtb drug names from an xlsx file and prints them in alphabetical order,
+# and saves them to a text file.
+
+import pandas as pd
+from io import StringIO
+
+table_data = """Drug_1	Drug_2	Drug_3	Drug_4	Drug_5	Drug_6	Drug_7	Drug_8	Drug_9
+BDQ	CHLORAMPHENICOL							
+BDQ	CLOFAZIMINE							
+BDQ	CYCLOSERINED							
+BDQ	DELx							
+BDQ	ETA							
+BDQ	EMB							
+BDQ	FUSIDICACID							
+BDQ	INH							
+BDQ	LINEZOLID							
+BDQ	Moxifloxacin							
+BDQ	NITROFURANTOIN							
+BDQ	RIF							
+BDQ	SQ109							
+BDQ	TUNICAMYCIN							
+BDQ	VANCOMYCIN							
+CHLORAMPHENICOL	CLOFAZIMINE							
+CHLORAMPHENICOL	CYCLOSERINED							
+CHLORAMPHENICOL	DELx							
+CHLORAMPHENICOL	ETA							
+CHLORAMPHENICOL	EMB							
+CHLORAMPHENICOL	FUSIDICACID							
+CHLORAMPHENICOL	INH							
+CHLORAMPHENICOL	LINEZOLID							
+CHLORAMPHENICOL	Moxifloxacin							
+CHLORAMPHENICOL	NITROFURANTOIN							
+CHLORAMPHENICOL	RIF							
+CHLORAMPHENICOL	SQ109							
+CHLORAMPHENICOL	TUNICAMYCIN							
+CHLORAMPHENICOL	VANCOMYCIN							
+CLOFAZIMINE	CYCLOSERINED							
+CLOFAZIMINE	DELx							
+CLOFAZIMINE	ETA							
+CLOFAZIMINE	EMB							
+CLOFAZIMINE	FUSIDICACID							
+CLOFAZIMINE	INH							
+CLOFAZIMINE	LINEZOLID							
+CLOFAZIMINE	Moxifloxacin							
+CLOFAZIMINE	NITROFURANTOIN							
+CLOFAZIMINE	RIF							
+CLOFAZIMINE	SQ109							
+CLOFAZIMINE	TUNICAMYCIN							
+CLOFAZIMINE	VANCOMYCIN							
+CYCLOSERINED	DELx							
+CYCLOSERINED	ETA							
+CYCLOSERINED	EMB							
+CYCLOSERINED	FUSIDICACID							
+CYCLOSERINED	INH							
+CYCLOSERINED	LINEZOLID							
+CYCLOSERINED	Moxifloxacin							
+CYCLOSERINED	NITROFURANTOIN							
+CYCLOSERINED	RIF							
+CYCLOSERINED	SQ109							
+CYCLOSERINED	TUNICAMYCIN							
+CYCLOSERINED	VANCOMYCIN							
+DELx	RIF							
+DELx	SQ109							
+DELx	TUNICAMYCIN							
+DELx	VANCOMYCIN							
+EMB	DELx							
+EMB	FUSIDICACID							
+EMB	INH							
+EMB	LINEZOLID							
+EMB	Moxifloxacin							
+EMB	NITROFURANTOIN							
+EMB	RIF							
+EMB	SQ109							
+EMB	TUNICAMYCIN							
+EMB	VANCOMYCIN							
+ETA	DELx							
+ETA	EMB							
+ETA	FUSIDICACID							
+ETA	INH							
+ETA	LINEZOLID							
+ETA	Moxifloxacin							
+ETA	NITROFURANTOIN							
+ETA	RIF							
+ETA	SQ109							
+ETA	TUNICAMYCIN							
+ETA	VANCOMYCIN							
+FUSIDICACID	DELx							
+FUSIDICACID	INH							
+FUSIDICACID	LINEZOLID							
+FUSIDICACID	Moxifloxacin							
+FUSIDICACID	NITROFURANTOIN							
+FUSIDICACID	RIF							
+FUSIDICACID	SQ109							
+FUSIDICACID	TUNICAMYCIN							
+FUSIDICACID	VANCOMYCIN							
+INH	DELx							
+INH	LINEZOLID							
+INH	Moxifloxacin							
+INH	NITROFURANTOIN							
+INH	RIF							
+INH	SQ109							
+INH	TUNICAMYCIN							
+INH	VANCOMYCIN							
+LINEZOLID	DELx							
+LINEZOLID	Moxifloxacin							
+LINEZOLID	NITROFURANTOIN							
+LINEZOLID	RIF							
+LINEZOLID	SQ109							
+LINEZOLID	TUNICAMYCIN							
+LINEZOLID	VANCOMYCIN							
+Moxifloxacin	DELx							
+Moxifloxacin	NITROFURANTOIN							
+Moxifloxacin	RIF							
+Moxifloxacin	SQ109							
+Moxifloxacin	TUNICAMYCIN							
+Moxifloxacin	VANCOMYCIN							
+NITROFURANTOIN	DELx							
+NITROFURANTOIN	RIF							
+NITROFURANTOIN	SQ109							
+NITROFURANTOIN	TUNICAMYCIN							
+NITROFURANTOIN	VANCOMYCIN							
+RIF	SQ109							
+RIF	TUNICAMYCIN							
+RIF	VANCOMYCIN							
+SQ109	TUNICAMYCIN							
+SQ109	VANCOMYCIN							
+TUNICAMYCIN	VANCOMYCIN							
+AMIKACIN	CPZ							
+AMIKACIN	DOXYCYCLINE							
+AMIKACIN	LINEZOLID							
+AMIKACIN	TRZ							
+AMIKACIN	VERAPAMIL							
+BDQ	DELx							
+BDQ	Moxifloxacin							
+CAP	LINEZOLID							
+CLARYTHROMYCIN	INH							
+CLARYTHROMYCIN	RIF							
+CLOFAZIMINE	LINEZOLID							
+CPZ	INH							
+CPZ	OFLOX							
+CPZ	RIF							
+DELx	Moxifloxacin							
+EMB	INH							
+EMB	RIF							
+ETHIDIUMBROMIDE	TRZ							
+ETHIDIUMBROMIDE	VERAPAMIL							
+INH	MINOCYCLINE							
+INH	RIF							
+INH	SM							
+INH	TRZ							
+INH	VERAPAMIL							
+Kanamycin	LINEZOLID							
+LEVO	LINEZOLID							
+LINEZOLID	Moxifloxacin							
+MINOCYCLINE	RIF							
+OFLOX	TRZ							
+OFLOX	VERAPAMIL							
+RIF	SM							
+RIF	TRZ							
+RIF	VERAPAMIL							
+INH	EMB	RIF						
+INH	RIF	EMB						
+LEVO	EMB	AMIKACIN						
+LEVO	LINEZOLID	AMIKACIN						
+LEVO	LINEZOLID	EMB						
+OFLOX	EMB	RIF						
+2169Uganda_rifampicin_resistant	RIF							
+AMIKACIN	CPZ							
+AMIKACIN	CYCLOSERINED							
+AMIKACIN	INH							
+AMIKACIN	LZDx							
+AMIKACIN	PA824							
+AMIKACIN	SQ109							
+AMIKACIN	THZ (1hrMIC)							
+AMIKACIN	VERx							
+AZITHROMYCIN	SPECTINOMYCIN							
+BDQ	CLARYTHROMYCIN							
+BDQ	CLOFAZIMINE							
+BDQ	CLOFAZIMINE							
+BDQ	CPZ							
+BDQ	CYCLOSERINED							
+BDQ	EMBx							
+BDQ	ETA							
+BDQ	INH							
+BDQ	INH							
+BDQ	INH							
+BDQ	LZDx							
+BDQ	Moxifloxacin							
+BDQ	PA824							
+BDQ	PA824							
+BDQ	PA824							
+BDQ	PBTZ169x							
+BDQ	PBTZ169x							
+BDQ	RIF							
+BDQ	RIF							
+BDQ	RIF							
+BDQ	SM							
+BDQ	SPECTINOMYCIN							
+BDQ	SQ109							
+BDQ	SQ109							
+BDQ	VERx							
+CAP	CLOFAZIMINE							
+CAP	CYCLOSERINED							
+CAP	INH							
+CAP	LEVO							
+CAP	LZDx							
+CAP	PA824							
+CAP	SM							
+CAP	SPECTINOMYCIN							
+CAP	SQ109							
+CIPROFLOXACIN	RIF							
+CLARYTHROMYCIN	CPZ							
+CLARYTHROMYCIN	INH							
+CLARYTHROMYCIN	INH							
+CLARYTHROMYCIN	LZDx							
+CLARYTHROMYCIN	RIF							
+CLARYTHROMYCIN	RIF							
+CLARYTHROMYCIN	RIF							
+CLARYTHROMYCIN	SPECTINOMYCIN							
+CLARYTHROMYCIN	SPECTINOMYCIN							
+CLOFAZIMINE	CYCLOSERINED							
+CLOFAZIMINE	EMBx							
+CLOFAZIMINE	ETA							
+CLOFAZIMINE	INH							
+CLOFAZIMINE	INH							
+CLOFAZIMINE	INH							
+CLOFAZIMINE	INH							
+CLOFAZIMINE	LZDx							
+CLOFAZIMINE	LZDx							
+CLOFAZIMINE	Moxifloxacin							
+CLOFAZIMINE	Moxifloxacin							
+CLOFAZIMINE	PA824							
+CLOFAZIMINE	PA824							
+CLOFAZIMINE	PA824							
+CLOFAZIMINE	RIF							
+CLOFAZIMINE	RIF							
+CLOFAZIMINE	SPECTINOMYCIN							
+CLOFAZIMINE	VERx							
+CPZ	ETHIDIUMBROMIDE							
+CPZ	INH							
+CPZ	OFX1							
+CPZ	RIF							
+CPZ	RIF							
+CPZ	SPECTINOMYCIN							
+CPZ	SPECTINOMYCIN							
+CYCLOSERINED	INH							
+CYCLOSERINED	INH							
+CYCLOSERINED	PA824							
+CYCLOSERINED	RIF							
+CYCLOSERINED	SM							
+CYCLOSERINED	SQ109							
+CYCLOSERINED	SQ109							
+ECONAZOLE	SPECTINOMYCIN							
+EMBx	ETA							
+EMBx	INH							
+EMBx	INH							
+EMBx	LZDx							
+EMBx	Moxifloxacin							
+EMBx	PA824							
+EMBx	PA824							
+EMBx	RIF							
+EMBx	RIF							
+EMBx	SPECTINOMYCIN							
+EMBx	SQ109							
+ETA	INH							
+ETA	LZDx							
+ETA	Moxifloxacin							
+ETA	PA824							
+ETA	PA824							
+ETA	RIF							
+ETA	SQ109							
+ETA	TKK_010025_ethionamide_resistant							
+ETA	TKK_010033_ethionamide_resistant							
+ETA	TKK_010040_ethionamide_resistant							
+ETHIDIUMBROMIDE	THZ (1hrMIC)							
+ETHIDIUMBROMIDE	VERx							
+FUSIDICACID	SPECTINOMYCIN							
+HN878_rif_resistant	RIF							
+INH	LEVO							
+INH	LZDx							
+INH	MINOCYCLINE							
+INH	Moxifloxacin							
+INH	PA824							
+INH	PA824							
+INH	PA824							
+INH	PBTZ169x							
+INH	RIF							
+INH	RIF							
+INH	RIF							
+INH	RIF							
+INH	RIF							
+INH	SM							
+INH	SM							
+INH	SPECTINOMYCIN							
+INH	SPECTINOMYCIN							
+INH	SQ109							
+INH	THZ (1hrMIC)							
+INH	VERx							
+Kanamycin	LZDx							
+LEVO	LZDx							
+LEVO	Moxifloxacin							
+LEVO	SPECTINOMYCIN							
+LZDx	Moxifloxacin							
+LZDx	Moxifloxacin							
+LZDx	PA824							
+LZDx	RIF							
+MENADIONE	SPECTINOMYCIN							
+MINOCYCLINE	RIF							
+MINOCYCLINE	SPECTINOMYCIN							
+Moxifloxacin	PA824							
+Moxifloxacin	PBTZ169x							
+Moxifloxacin	RIF							
+Moxifloxacin	RIF							
+Moxifloxacin	SM							
+Moxifloxacin	SPECTINOMYCIN							
+MTM	SPECTINOMYCIN							
+NIGERICIN	SPECTINOMYCIN							
+NORFLOXACIN	RIF							
+NOVOBIOCIN	SPECTINOMYCIN							
+OFX1	THZ (1hrMIC)							
+OFX1	TRS_OFX_resistant							
+OFX1	VERx							
+PA824	PBTZ169x							
+PA824	RIF							
+PA824	RIF							
+PA824	RIF							
+PA824	SM							
+PA824	SQ109							
+PBTZ169x	RIF							
+PBTZ169x	SQ109							
+RIF	SM							
+RIF	SM							
+RIF	SPECTINOMYCIN							
+RIF	SPECTINOMYCIN							
+RIF	SQ109							
+RIF	SQ109							
+RIF	THZ (1hrMIC)							
+RIF	VERx							
+RIF	VERx							
+ROX	SPECTINOMYCIN							
+SM	SPECTINOMYCIN							
+SM	SQ109							
+SPECTINOMYCIN	TET							
+SPECTINOMYCIN	VANCOMYCIN							
+SQ109	SUTx							
+BDQ	CLOFAZIMINE	INH						
+BDQ	CLOFAZIMINE	PA824						
+BDQ	CLOFAZIMINE	RIF						
+BDQ	INH	PA824						
+BDQ	INH	RIF						
+BDQ	PA824	RIF						
+CAP	LEVO	SPECTINOMYCIN						
+CLARYTHROMYCIN	INH	RIF						
+CLARYTHROMYCIN	INH	RIF						
+CLOFAZIMINE	CAP	SPECTINOMYCIN						
+CLOFAZIMINE	EMBx	PA824						
+CLOFAZIMINE	EMBx	SQ109						
+CLOFAZIMINE	INH	PA824						
+CLOFAZIMINE	INH	RIF						
+CLOFAZIMINE	INH	SPECTINOMYCIN						
+CLOFAZIMINE	LZDx	BDQ						
+CLOFAZIMINE	Moxifloxacin	SPECTINOMYCIN						
+CLOFAZIMINE	Moxifloxacin	SQ109						
+CLOFAZIMINE	PA824	BDQ						
+CLOFAZIMINE	PA824	RIF						
+CLOFAZIMINE	PA824	SQ109						
+CYCLOSERINED	EMBx	SQ109						
+CYCLOSERINED	Moxifloxacin	SQ109						
+CYCLOSERINED	PA824	BDQ						
+EMBx	INH	RIF						
+EMBx	LZDx	SQ109						
+EMBx	PA824	BDQ						
+EMBx	PA824	SQ109						
+EMBx	SQ109	BDQ						
+EMBx	SQ109	Moxifloxacin						
+INH	LEVO	SPECTINOMYCIN						
+INH	MINOCYCLINE	RIF						
+INH	PA824	RIF						
+INH	RIF	AMIKACIN						
+INH	RIF	AMP						
+INH	RIF	AZITHROMYCIN						
+INH	RIF	CEFACLOR						
+INH	RIF	CHLORAMPHENICOL						
+INH	RIF	CIPROFLOXACIN						
+INH	RIF	CLARYTHROMYCIN						
+INH	RIF	EMBx						
+INH	RIF	EMBx						
+INH	RIF	ERYTHROMYCIN						
+INH	RIF	LEVO						
+INH	RIF	MINOCYCLINE						
+INH	RIF	SM						
+INH	RIF	SM						
+INH	RIF	SPECTINOMYCIN						
+INH	RIF	TET						
+INH	RIF	VANCOMYCIN						
+LEVO	Moxifloxacin	SPECTINOMYCIN						
+LZDx	Moxifloxacin	SQ109						
+Moxifloxacin	PA824	BDQ						
+Moxifloxacin	PA824	SQ109						
+PA824	SQ109	BDQ						
+INH	RIF	OXACILLIN						
+BDQ	CLOFAZIMINE	INH	PA824					
+BDQ	CLOFAZIMINE	INH	RIF					
+BDQ	CLOFAZIMINE	PA824	RIF					
+BDQ	INH	PA824	RIF					
+CLOFAZIMINE	INH	PA824	RIF					
+BDQ	CLOFAZIMINE	INH	PA824	RIF"""
+
+df = pd.read_csv(StringIO(table_data), sep='\t')
+drug_columns = [col for col in df.columns if 'Drug_' in col]
+all_drugs = df[drug_columns].melt()['value']
+unique_drugs = all_drugs.dropna().unique()
+unique_drugs_sorted = sorted(unique_drugs)
+
+print("Drugs:")
+for drug in unique_drugs_sorted:
+    print(drug)
+
+with open('unique_drugs.txt', 'w') as f:
+    for drug in unique_drugs_sorted:
+        f.write(f"{drug}\n")
