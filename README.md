@@ -34,7 +34,7 @@ One file has not been uploaded to the github due to their size, but are both pub
 
 ## Requirements
 
-Stage 1 uses Python. The main Stage 2 analyses use MATLAB, with a Python notebook provided as a simplified Stage 2 demo.
+Stage 1 uses Python. Stage 2 is available in both Python and MATLAB.
 
 Install the basic Python dependencies with:
 
@@ -42,26 +42,14 @@ Install the basic Python dependencies with:
 pip install numpy pandas scikit-learn scipy openpyxl matplotlib
 ```
 
-Stage 1 also requires:
+Stage 1 additionally requires:
 
 * [DeepPurpose](https://github.com/kexinhuang12345/DeepPurpose) for PseudoAAC protein encodings
 * `rdkit` for MACCS drug encodings
 
-The full Stage 2 workflows in `M2D2_stage2_predict/` and `M2D2_stage2ML_traintest/` require MATLAB with the Statistics and Machine Learning Toolbox.
+The full MATLAB Stage 2 workflows require MATLAB with the Statistics and Machine Learning Toolbox.
 
-## Quick start: Stage 2 demo
-
-The easiest way to run M2D2 is the Python Stage 2 demo:
-
-```text
-M2D2_demo_python/M2D2_stage2_solution.ipynb
-```
-
-Run the notebook from inside `M2D2_demo_python/`. All required inputs are provided in `input_data/`, so this demo does not require MATLAB, DeepPurpose, or rerunning Stage 1.
-
-`M2D2_stage2_demo.ipynb` contains the same workflow with the two main M2D2 functions left blank as an exercise.
-
-A MATLAB version of the demo is available in `M2D2_demo_matlab/`.
+`bindingdb_merged_all.pkl`, used to train the Stage 1 model, is stored with Git LFS. Make sure Git LFS is installed if you plan to rerun Stage 1.
 
 ## Stage 1: Drug–protein interaction prediction
 
@@ -81,43 +69,58 @@ The workflow consists of:
 | 2    | `generate_protein_encodings.ipynb` | `ecoli_4087_pseudoAAC.pkl` |
 | 3    | `drug-protein_prediction.ipynb`    | `out.csv`                  |
 
-The drug and protein encodings from steps 1 and 2 are already included in the repository. To rerun the drug–protein prediction, you can therefore begin with step 3.
+The drug and protein encodings from steps 1 and 2 are already included in the repository, so the drug–protein prediction can be rerun starting from step 3.
 
-The prediction model is trained on BindingDB using MACCS drug fingerprints and PseudoAAC protein encodings, and then predicts binding affinity for each drug–protein pair.
+The prediction model is trained on BindingDB using MACCS drug fingerprints and PseudoAAC protein encodings, and predicts a binding score for each drug–protein pair.
 
-A precomputed Stage 1 feature matrix is already included at:
+A precomputed Stage 1 feature matrix is also included at:
 
 ```text
 M2D2_stage2_predict/datasets/ml_4070x58.xlsx
 ```
 
-Therefore, Stage 2 can be run without rerunning Stage 1.
+Therefore, Stage 2 can be run directly without rerunning Stage 1.
 
 ## Stage 2: Drug–drug interaction prediction
 
-The full Stage 2 workflows are implemented as MATLAB Live Scripts.
+Stage 2 uses the drug–protein features from Stage 1 to construct M2D2 sigma and delta features and predict drug–drug interaction scores.
 
-Set the MATLAB working directory to the folder containing the workflow you want to run.
+Stage 2 is implemented in both Python and MATLAB.
 
-### Model evaluation
+### Python
 
-To evaluate M2D2 using the available feature datasets:
-
-```text
-M2D2_stage2ML_traintest/MLAnalysis_weighted.mlx
-```
-
-### Drug interaction prediction
-
-To predict interactions involving the FDA-approved drug set:
+The Python implementation can be run through:
 
 ```text
-M2D2_stage2_predict/MLAnalysis_test2000drugList.mlx
+M2D2_demo_python/M2D2_stage2_solution.ipynb
 ```
 
-Stage 2 converts the drug–protein feature matrix into binary interaction profiles, constructs the M2D2 sigma and delta features for each drug pair, and trains a random forest model to predict drug–drug interaction scores.
+Run the notebook from inside `M2D2_demo_python/`. All required inputs are provided in `input_data/`, so Stage 1 does not need to be rerun.
 
-The default Stage 1 ML features can be replaced with the other feature datasets included in the repository, including chemogenomics, molecular docking, metabolomics, and transcriptomics.
+`M2D2_stage2_demo.ipynb` contains the same workflow with the two core M2D2 functions left blank as an exercise.
+
+A MATLAB version of the same demo is available in:
+
+```text
+M2D2_demo_matlab/
+```
+
+The `M2D2_Boltz2/` workflow also provides a Python implementation of Stage 2, using Boltz-2 predictions in place of the original Stage 1 features. See the Boltz-2 section below for details.
+
+### MATLAB
+
+The original Stage 2 workflows are also provided as MATLAB Live Scripts.
+
+Set the MATLAB working directory to the corresponding folder before running the script.
+
+| Goal                                               | Folder                     | Run                               |
+| -------------------------------------------------- | -------------------------- | --------------------------------- |
+| Evaluate model performance across feature datasets | `M2D2_stage2ML_traintest/` | `MLAnalysis_weighted.mlx`         |
+| Predict interactions for the FDA-approved drug set | `M2D2_stage2_predict/`     | `MLAnalysis_test2000drugList.mlx` |
+
+The Stage 2 workflow binarizes the Stage 1 drug–protein feature matrix, constructs sigma and delta profiles for each drug pair, and trains a random forest model to predict drug–drug interaction scores.
+
+In addition to the Stage 1 ML predictions, the MATLAB workflow can use the other feature datasets included in the repository, including chemogenomics, molecular docking, metabolomics, and transcriptomics.
 
 Training drug–drug interaction scores are provided in:
 
@@ -127,16 +130,18 @@ drugInteractions/drugInteractions_weights.xlsx
 
 ## Boltz-2
 
-`M2D2_Boltz2/` provides an alternative Stage 1 implementation using [Boltz-2](https://github.com/jwohlwend/boltz) for drug–protein predictions. The resulting Boltz-2 affinity scores are used as features for the M2D2 Stage 2 drug–drug interaction model.
+`M2D2_Boltz2/` provides an alternative Stage 1 implementation using [Boltz-2](https://github.com/jwohlwend/boltz) for drug–protein predictions.
 
-A precomputed Boltz-2 feature matrix is included, so the Stage 2 analyses can be run without rerunning the GPU-intensive Boltz-2 predictions.
+The resulting Boltz-2 affinity scores are used as input features for the same M2D2 Stage 2 workflow. The folder includes a Python Stage 2 implementation for evaluating these features.
+
+A precomputed Boltz-2 feature matrix is included, so Stage 2 can be run without rerunning the GPU-intensive Boltz-2 predictions.
 
 See `M2D2_Boltz2/README.md` for setup and usage instructions.
 
-
 ## M. tuberculosis
 
-The `M2D2_mtb/` folder contains the *Mycobacterium tuberculosis* implementation of M2D2.
+`M2D2_mtb/` applies the M2D2 workflow to *Mycobacterium tuberculosis*, with organism-specific drug and protein inputs.
 
-See `M2D2_mtb/README.md` for instructions specific to that workflow.
+A precomputed Stage 1 output is included, so its Stage 2 analysis can also be run directly.
 
+See `M2D2_mtb/README.md` for setup and usage instructions.
